@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Will You Be My Valentine ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    color: white;
+}
+
+/* HEART */
+#heart {
+    width: 70vw;
+    height: 70vw;
+    max-width: 320px;
+    max-height: 320px;
+    background: red;
+    position: relative;
+    transform: rotate(-45deg);
+    cursor: pointer;
+    transition: transform 0.8s ease;
+}
+
+#heart::before,
+#heart::after {
+    content: "";
+    width: 70vw;
+    height: 70vw;
+    max-width: 320px;
+    max-height: 320px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+}
+
+#heart::before {
+    top: -50%;
+    left: 0;
+}
+
+#heart::after {
+    left: 50%;
+    top: 0;
+}
+
+.open {
+    transform: rotate(-45deg) scale(1.15);
+}
+
+/* OPTIONS */
+#options {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+#valentine-text {
+    font-size: 22px;
+    color: #ffb3c1;
+    text-align: center;
+}
+
+/* BUTTON ROW */
+#buttons {
+    display: flex;
+    gap: 40px;
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+#yes {
+    background: #de8595;
+    color: #2e2e2e;
+}
+
+#no {
+    background: #8d4343;
+    color: #f5dada;
+    position: relative;
+}
+
+/* CONTENT */
+#content {
+    display: none;
+    text-align: center;
+    max-width: 90%;
+}
+
+#content img {
+    width: 40vw;
+    max-width: 150px;
+    height: 40vw;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="heart"></div>
+
+<div id="options">
+    <div id="valentine-text">Will you be my Valentine? ❤️</div>
+
+    <div id="buttons">
+        <button id="yes">YES 💖</button>
+        <button id="no">NO 😜</button>
+    </div>
+</div>
+
+<div id="content">
+    <h1> You are my Valentine Forever Babe❤️</h1>
+    <p>
+        Even miles apart, you’re always in my heart.  
+        You are my favorite person, today and always 💕
+    </p>
+    <p> Hundred hearts would be too few to carry all my love for you💋</p>
+    <p>You are the finest, loveliest, tenderest, and most beautiful person I have ever known, and even that is an understatement.🫂😘</p>
+    <div class="gallery">
+      <img src="pic1.jpg" alt="Our memory 1">
+      <img src="pic2.jpg" alt="Our memory 2">
+      <img src="pic3.jpg" alt="Our memory 3">
+  </div>  
+</div>
+
+<script>
+const heart = document.getElementById("heart");
+const options = document.getElementById("options");
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const content = document.getElementById("content");
+
+/* OPEN HEART */
+heart.addEventListener("click", () => {
+    heart.classList.add("open");
+    options.style.display = "flex";
+
+    setTimeout(() => {
+        no.style.display = "none";
+    }, 5000);
+});
+
+/* YES CLICK */
+yes.addEventListener("click", () => {
+    options.style.display = "none";
+    heart.style.display = "none";
+    content.style.display = "block";
+});
+
+/* NO RUNS AWAY */
+no.addEventListener("mouseover", () => {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 100 - 50;
+    no.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+/* IF NO IS CLICKED */
+no.addEventListener("click", () => {
+    no.innerText = "YES 💖";
+    no.style.background = "#ff4d6d";
+    no.onclick = () => yes.click();
+});
+</script>
+
+</body>
+</html>
